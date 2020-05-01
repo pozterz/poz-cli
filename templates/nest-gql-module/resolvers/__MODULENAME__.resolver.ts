@@ -36,7 +36,7 @@ export class <%= moduleNameCap %>Resolver {
     const imageTemp = []
     try {
 
-      const result = await this.<%= moduleName %>Service.findByPk(<%= moduleName %>ID)
+      const result = await this.<%= moduleName %>Service.findById(<%= moduleName %>ID)
       if (result) {
         return await this.<%= moduleName %>Service.update(result, <%= moduleName %>)
       }
@@ -59,7 +59,8 @@ export class <%= moduleNameCap %>Resolver {
     @Args('<%= moduleName %>ID', { type: () => Int }) <%= moduleName %>ID: number,
   ) {
     try {
-      await this.<%= moduleName %>Service.delete(<%= moduleName %>ID)
+      const <%= moduleName %> = await this.<%= moduleName %>Service.findById(<%= moduleName %>ID)
+      await this.<%= moduleName %>Service.delete(<%= moduleName %>)
       return true
     } catch (error) {
       return error

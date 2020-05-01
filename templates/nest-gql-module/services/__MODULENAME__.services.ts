@@ -14,6 +14,10 @@ export class <%= moduleNameCap %>Service {
     return new <%= moduleNameCap %>().hasKey(key)
   }
 
+  async findAll(options = {}): Promise<<%= moduleNameCap %>[]> {
+    return await this.<%= moduleName %>.findByPk(options)
+  }
+
   async findById(id, options = {}): Promise<<%= moduleNameCap %>> {
     return await this.<%= moduleName %>.findByPk(id, options)
   }
