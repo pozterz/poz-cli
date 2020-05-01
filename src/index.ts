@@ -1,15 +1,63 @@
 #!/usr/bin/env node
 import * as fs from "fs";
 import * as path from "path";
+import * as inquirer from "inquirer";
+import * as chalk from "chalk";
 import * as template from "./utils/template";
+
+export interface CliOptions {
+  moduleName: string;
+  templateName: string;
+  templatePath: string;
+  tartgetPath: string;
+}
 
 const CURR_DIR = process.cwd();
 
-const moduleName = "test";
-const projectChoice = "nest-module";
-const dir = "src/modules";
-const templatePath = path.join("templates", projectChoice);
-const tartgetPath = path.join(CURR_DIR, dir ? dir : undefined, moduleName);
+const CHOICES = fs.readdirSync(path.join(__dirname, "templates"));
+
+const QUESTIONS = [
+  {
+    name: "template",
+    type: "list",
+    message: "What project template would you like to generate?",
+    choices: CHOICES,
+  },
+  {
+    name: "name",
+    type: "input",
+    message: "name:",
+    validate: (input: string) => {
+      if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
+      else return "Name may only include letters, numbers, underscores and hashes.";
+    },
+  },
+  {
+    name: "output",
+    type: "input",
+    message: "output dir (default: src/modules):",
+  },
+];
+
+inquirer.prompt(QUESTIONS).then((answers) => {
+  const moduleName = answers["name"] as string;
+  const projectChoice = answers["template"] as string;
+  const dir = (answers["output"] as string) || "src/modules";
+  const templatePath = path.join(__dirname, "templates", projectChoice);
+  const tartgetPath = path.join(CURR_DIR, dir ? dir : undefined, moduleName);
+
+  createProject(tartgetPath);
+  createDirectoryContents(templatePath, tartgetPath, moduleName);
+
+  const options: CliOptions = {
+    moduleName,
+    templateName: projectChoice,
+    templatePath,
+    tartgetPath,
+  };
+
+  showMessage(options);
+});
 
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
@@ -52,5 +100,6 @@ function createDirectoryContents(templatePath, tartgetPath, moduleName) {
   });
 }
 
-createProject(tartgetPath);
-createDirectoryContents(templatePath, tartgetPath, moduleName);
+function showMessage(options: CliOptions) {
+  console.log(chalk.green("Done."));
+}
