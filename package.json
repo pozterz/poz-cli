@@ -1,6 +1,6 @@
 {
   "name": "poz-cli",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "license": "MIT",
   "devDependencies": {
