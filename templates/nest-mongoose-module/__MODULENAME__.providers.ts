@@ -1,8 +1,12 @@
-import { <%= moduleNameCap %> } from './entity/<%= moduleName %>.entity'
+import { Connection } from 'mongoose'
+import { <%= modelNameCap %> } from '../../constants/Models'
+import { <%= modelNameCap %>Schema } from './schema/user.schema'
 
-export const <%= moduleNameCap %>Provider = [
+export const <%= moduleNameCap %>Providers = [
   {
-    provide: IRepository.<%= moduleNameCap %>Repository,
-    useValue: <%= moduleNameCap %>,
-  }
-]
+    provide: <%= modelNameCap %>.model,
+    useFactory: (connection: Connection) =>
+      connection.model(<%= modelNameCap %>.tableName, <%= modelNameCap %>Schema),
+    inject: ['DATABASE_CONNECTION'],
+  },
+}

@@ -1,13 +1,15 @@
-import { Injectable, Inject } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
 import { <%= modelNameCap %> } from '../../../constants/Models'
-import { <%= moduleNameCap %> } from '../entity/<%= moduleName %>.entity'
-import { <%= moduleNameCap %>DTO } from '../models/<%= moduleName %>.dto'
+import { <%= moduleNameCap %> } from '../schema/<%= moduleName %>.interface'
+import { <%= moduleNameCap %>DTO } from '../schema/<%= moduleName %>.dto'
 
 @Injectable()
 export class <%= moduleNameCap %>Service {
   constructor(
     @InjectModel(<%= modelNameCap %>.tableName)
-    private readonly <%= moduleName %>: Model<%= moduleNameCap %>,
+    private readonly <%= moduleName %>: Model<<%= moduleNameCap %>>,
   ) {}
 
   async findAll(options = {}): Promise<<%= moduleNameCap %>[]> {

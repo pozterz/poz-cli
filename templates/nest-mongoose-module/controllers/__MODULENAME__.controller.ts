@@ -3,7 +3,7 @@ import {
     Get,
     Res,
     HttpStatus,
-    InternalServerErrorException
+    InternalServerErrorException,
     Post,
     Body,
     Patch,
@@ -11,7 +11,7 @@ import {
     Param,
   } from '@nestjs/common'
   import { ApiTags } from '@nestjs/swagger'
-  import { <%= moduleNameCap %>DTO } from '../models/<%= moduleName %>.dto'
+  import { <%= moduleNameCap %>DTO } from '../schema/<%= moduleName %>.dto'
   import { <%= moduleNameCap %>Service } from '../services/<%= moduleName %>.services'
   
   @ApiTags('<%= moduleName %>')
