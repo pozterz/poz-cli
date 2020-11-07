@@ -87,7 +87,7 @@ function createDirectoryContents(templatePath, tartgetPath, moduleName) {
     if (stats.isFile()) {
       let contents = fs.readFileSync(origFilePath, "utf8");
 
-      contents = template.render(contents, { moduleName, moduleNameCap: moduleName.charAt(0).toUpperCase() + moduleName.slice(1) });
+      contents = template.render(contents, { moduleName, moduleNameCap: moduleName.charAt(0).toUpperCase() + moduleName.slice(1), modelNameCap: moduleName.toUpperCase() + "MODEL" });
 
       const writePath = path.join(tartgetPath, file);
       fs.writeFileSync(writePath, contents, "utf8");
