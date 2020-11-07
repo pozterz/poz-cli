@@ -8,5 +8,5 @@ export const <%= moduleNameCap %>Providers = [
     useFactory: (connection: Connection) =>
       connection.model(<%= modelNameCap %>.tableName, <%= moduleNameCap %>Schema),
     inject: ['DATABASE_CONNECTION'],
-  },
-}
+  }
+]
