@@ -33,7 +33,7 @@ import {
         try {
         const <%= moduleName %> = await this.<%= moduleName %>Service.create(body)
         return res.status(HttpStatus.OK).json(<%= moduleName %>)
-        } catch (err) {
+        } catch (error) {
          throw new InternalServerErrorException({ message: error.message })
         }
     }
@@ -43,7 +43,7 @@ import {
         try {
         const <%= moduleName %> = await this.<%= moduleName %>Service.update(id, body)
         return res.status(HttpStatus.OK).json(<%= moduleName %>)
-        } catch (err) {
+        } catch (error) {
          throw new InternalServerErrorException({ message: error.message })
         }
     }
@@ -53,7 +53,7 @@ import {
         try {
         const <%= moduleName %> = await this.<%= moduleName %>Service.delete(id)
         return res.status(HttpStatus.OK).json(<%= moduleName %>)
-        } catch (err) {
+        } catch (error) {
          throw new InternalServerErrorException({ message: error.message })
         }
     }
