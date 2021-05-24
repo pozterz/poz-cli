@@ -14,7 +14,7 @@ export class <%= moduleNameCap %> extends Model<<%= moduleNameCap %>> {
   @PrimaryKey
   @AutoIncrement
   @Column
-  <%= moduleName %>ID: number
+  id: number
 
   hasKey = key => {
     return key in this

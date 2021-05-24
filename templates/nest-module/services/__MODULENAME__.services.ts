@@ -6,7 +6,7 @@ import { <%= moduleNameCap %>DTO } from '../models/<%= moduleName %>.dto'
 @Injectable()
 export class <%= moduleNameCap %>Service {
   constructor(
-    @Inject(IRepository.<%= moduleName %>Repository)
+    @Inject(IRepository.<%= moduleNameCap %>Repository)
     private readonly <%= moduleName %>: typeof <%= moduleNameCap %>,
   ) {}
 
@@ -22,7 +22,7 @@ export class <%= moduleNameCap %>Service {
     return await this.<%= moduleName %>.findByPk(id, options)
   }
 
-  async create(data: <%= moduleNameCap %>DTO): Promise<<%= moduleNameCap %>> {
+  async create(data): Promise<<%= moduleNameCap %>> {
     let transaction
     try {
       transaction = await this.<%= moduleName %>.sequelize.transaction()

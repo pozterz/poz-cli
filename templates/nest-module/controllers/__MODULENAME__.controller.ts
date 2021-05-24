@@ -3,18 +3,13 @@ import {
     Get,
     Res,
     HttpStatus,
-    UseGuards,
     Post,
     Body,
     Patch,
     Delete,
     Param,
-    Query,
-    Req,
-    Logger
   } from '@nestjs/common'
   import { ApiTags } from '@nestjs/swagger'
-  import { <%= moduleNameCap %>DTO } from '../models/<%= moduleName %>.dto'
   import { <%= moduleNameCap %>Service } from '../services/<%= moduleName %>.services'
   
   @ApiTags('<%= moduleName %>')
